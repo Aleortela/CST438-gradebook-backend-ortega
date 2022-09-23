@@ -52,14 +52,13 @@ public class GradeBookController {
 		List<Assignment> assignments = assignmentRepository.findNeedGradingByEmail(email);
 		AssignmentListDTO result = new AssignmentListDTO();
 		for (Assignment a: assignments) {
-			result.assignments.add(new AssignmentListDTO.AssignmentDTO(a.getId(), a.getCourse().getCourse_id(), a.getName(), a.getDueDate().toString() , a.getCourse().getTitle()));
+			result.assignments.add(new AssignmentListDTO.AssignmentDTO(a.getId(), a.getCourse().getCourse_id(), a.getName(), a.getDueDate() , a.getCourse().getTitle()));
 		}
 		return result;
 	}
 	
 	@GetMapping("/gradebook/{id}")
-	public GradebookDTO getGradebook(@PathVariable("id") Integer assignmentId  ) {
-		
+	public GradebookDTO getGradebook(@PathVariable("id") Integer assignmentId ) {
 		String email = "dwisneski@csumb.edu";  // user name (should be instructor's email) 
 		Assignment assignment = checkAssignment(assignmentId, email);
 		
