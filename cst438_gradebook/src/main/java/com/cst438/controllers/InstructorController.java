@@ -76,7 +76,7 @@ public class InstructorController{
 		if (!op.isPresent()) {
 			throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Invalid assignment primary key. "+assignment.assignmentId);
 		}else {
-			Assignment nuu = op.get();
+			Assignment nuu = new Assignment(assignment);
 			assignmentRepository.save(nuu);
 		}
 		
