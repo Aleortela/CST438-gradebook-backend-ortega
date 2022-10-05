@@ -259,7 +259,7 @@ public class JunitTestGradebook {
 		adto.setDueDate(new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
 		adto.setNeedsGrading(1);
 		
-		System.out.println(asJsonString(adto));
+		//System.out.println(asJsonString(adto));
 		
 		response = mvc.perform(MockMvcRequestBuilders.post("/instructor/add").accept(MediaType.APPLICATION_JSON)
 				.content(asJsonString(adto)).contentType(MediaType.APPLICATION_JSON))
@@ -270,6 +270,56 @@ public class JunitTestGradebook {
 		
 	}
 
+
+	// Test updating existing assignment.
+	@Test
+	public void updateAssignemnt()throws Exception{
+		MockHttpServletResponse response;
+		Assignment ab = new Assignment();
+		ab.setId(100);
+		ab.setName("AB Name for testing update");
+		ab.setDueDate(new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
+		assignmentRepository.save(ab);
+		System.out.println(verify(assignmentRepository, times(1)).save(any()));
+		
+		//Optional<Assignment> op = assignmentRepository.findById(ab.getId());
+		//if(op.isEmpty()) {
+			//System.out.println("op is Empty");
+		//}else {
+			//System.out.println(op.get());
+		//}
+		
+	
+		/*
+		// DTO for updating
+		AssignmentDTO adto = new AssignmentDTO();
+		adto.setAssignmentID(100);
+		adto.setassignmentName("Some new name");
+		// set dueDate to 1 week before now.
+		adto.setDueDate(new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
+		adto.setNeedsGrading(0);
+		Assignment a = new Assignment(adto);
+		assignmentRepository.save(a);
+		
+		
+		// Set mock repository
+		//given(assignmentRepository.findById(adto.assignmentId)).willReturn(Optional.of(assignment));
+		//given(assignmentRepository.save(any(Assignment.class))).willReturn(assignment);
+		
+		
+		System.out.println(asJsonString(adto));
+		
+		// Test update request
+		response = mvc.perform(MockMvcRequestBuilders.put("/instructor/update").accept(MediaType.APPLICATION_JSON)
+				.content(asJsonString(adto)).contentType(MediaType.APPLICATION_JSON))
+		.andReturn().getResponse();
+		
+		
+		assertEquals(200, response.getStatus());
+		assignmentRepository.delete(a);
+		*/
+	}
+		
 	private static String asJsonString(final Object obj) {
 		try {
 

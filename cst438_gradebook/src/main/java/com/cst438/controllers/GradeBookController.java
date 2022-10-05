@@ -52,7 +52,7 @@ public class GradeBookController {
 		List<Assignment> assignments = assignmentRepository.findNeedGradingByEmail(email);
 		AssignmentListDTO result = new AssignmentListDTO();
 		for (Assignment a: assignments) {
-			result.assignments.add(new AssignmentListDTO.AssignmentDTO(a.getId(), a.getCourse().getCourse_id(), a.getName(), a.getDueDate() , a.getCourse().getTitle()));
+			result.assignments.add(new AssignmentListDTO.AssignmentDTO(a.getId(), a.getCourse().getCourse_id(), a.getAssignmentName(), a.getDueDate() , a.getCourse().getTitle(), 0));
 		}
 		return result;
 	}
@@ -67,7 +67,7 @@ public class GradeBookController {
 		//   if the student does not have a current grade, create an empty grade
 		GradebookDTO gradebook = new GradebookDTO();
 		gradebook.assignmentId= assignmentId;
-		gradebook.assignmentName = assignment.getName();
+		gradebook.assignmentName = assignment.getAssignmentName();
 		for (Enrollment e : assignment.getCourse().getEnrollments()) {
 			GradebookDTO.Grade grade = new GradebookDTO.Grade();
 			grade.name = e.getStudentName();
@@ -157,7 +157,7 @@ public class GradeBookController {
 	
 	private Assignment checkAssignment(int assignmentId, String email) {
 		// get assignment 
-		Assignment assignment = ((Assignment) assignmentRepository.findById(assignmentId)).orElse(null);
+		Assignment assignment = assignmentRepository.findById(assignmentId).orElse(null);
 		if (assignment == null) {
 			throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Assignment not found. "+assignmentId );
 		}

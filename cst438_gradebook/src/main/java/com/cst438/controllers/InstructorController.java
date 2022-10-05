@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.cst438.domain.Assignment;
 import com.cst438.domain.AssignmentGrade;
+import com.cst438.domain.AssignmentListDTO;
 import com.cst438.domain.AssignmentDTO;
 
 import com.cst438.domain.AssignmentRepository;
@@ -38,10 +39,10 @@ public class InstructorController{
 	CourseRepository courseRepository;
 	
 	@Transactional
-	@PostMapping("/instructor/add")
-	public void createAssignment(@RequestBody AssignmentDTO adto){
+	@PostMapping("/add")
+	public void createAssignment(@RequestBody AssignmentListDTO.AssignmentDTO adto){
 		
-		Optional<Assignment> a = assignmentRepository.findById(adto.assignmentId);
+		Optional<Assignment> a = assignmentRepository.findById(adto.getAssignmentID());
 		
 		if(a.isEmpty()) {
 			Assignment ta = new Assignment(adto);
@@ -52,7 +53,7 @@ public class InstructorController{
 	}
 	
 	@Transactional
-	@PostMapping("/instructor/delete/{id}")
+	@PostMapping("/delete/{id}")
 	public void updateAssignment(@PathVariable("id") Integer assignmentId) {
 		Optional<Assignment> check = assignmentRepository.findById(assignmentId);
 		
@@ -69,7 +70,7 @@ public class InstructorController{
 	}
 	
 	@Transactional
-	@PutMapping("/instructor/update")
+	@PutMapping("/update")
 	public void updateAssignment (@RequestBody AssignmentDTO assignment) {
 		
 		Optional<Assignment> op = assignmentRepository.findById(assignment.assignmentId);
