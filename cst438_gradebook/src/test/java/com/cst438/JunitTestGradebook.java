@@ -24,6 +24,7 @@ import com.cst438.controllers.InstructorController;
 import com.cst438.domain.Assignment;
 import com.cst438.domain.AssignmentGrade;
 import com.cst438.domain.AssignmentGradeRepository;
+import com.cst438.domain.AssignmentListDTO;
 import com.cst438.domain.AssignmentRepository;
 import com.cst438.domain.AssignmentDTO;
 import com.cst438.domain.Course;
@@ -106,7 +107,7 @@ public class JunitTestGradebook {
 		// set dueDate to 1 week before now.
 		assignment.setDueDate(new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
 		assignment.setId(1);
-		assignment.setName("Assignment 1");
+		assignment.setAssignmentName("Assignment 1");
 		assignment.setNeedsGrading(1);
 
 		AssignmentGrade ag = new AssignmentGrade();
@@ -191,7 +192,7 @@ public class JunitTestGradebook {
 		// set dueDate to 1 week before now.
 		assignment.setDueDate(new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
 		assignment.setId(1);
-		assignment.setName("Assignment 1");
+		assignment.setAssignmentName("Assignment 1");
 		assignment.setNeedsGrading(1);
 
 		AssignmentGrade ag = new AssignmentGrade();
@@ -253,9 +254,9 @@ public class JunitTestGradebook {
 		
 		MockHttpServletResponse response;
 		// set dueDate to 1 week before now.
-		AssignmentDTO adto = new AssignmentDTO();
+		AssignmentListDTO.AssignmentDTO adto = new AssignmentListDTO.AssignmentDTO();
 		adto.setAssignmentID(20);
-		adto.setassignmentName("JUnit Test Assignment");
+		adto.setAssignmentName("JUnit Test Assignment");
 		adto.setDueDate(new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
 		adto.setNeedsGrading(1);
 		
@@ -277,7 +278,7 @@ public class JunitTestGradebook {
 		MockHttpServletResponse response;
 		Assignment ab = new Assignment();
 		ab.setId(100);
-		ab.setName("AB Name for testing update");
+		ab.setAssignmentName("AB Name for testing update");
 		ab.setDueDate(new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
 		assignmentRepository.save(ab);
 		System.out.println(verify(assignmentRepository, times(1)).save(any()));

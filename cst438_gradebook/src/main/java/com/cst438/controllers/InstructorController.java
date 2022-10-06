@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,15 +46,22 @@ public class InstructorController{
 		Optional<Assignment> a = assignmentRepository.findById(adto.getAssignmentID());
 		
 		if(a.isEmpty()) {
-			Assignment ta = new Assignment(adto);
-			assignmentRepository.save(ta);
+			Course c = courseRepository.findById(adto.courseId).orElse(null);
+			if(c == null) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No courses matching entered ID");
+			}else {
+				Assignment ta = new Assignment(adto);
+				ta.setCourse(c);
+				assignmentRepository.save(ta);
+			}
+			
 		}else {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Assignment already exists");
 		}
 	}
 	
 	@Transactional
-	@PostMapping("/delete/{id}")
+	@DeleteMapping("/delete/{id}")
 	public void updateAssignment(@PathVariable("id") Integer assignmentId) {
 		Optional<Assignment> check = assignmentRepository.findById(assignmentId);
 		
