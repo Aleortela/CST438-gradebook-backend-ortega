@@ -1,4 +1,5 @@
 -- script to create gradebook database with sample data
+drop schema if exists `gradebook`;
 create schema gradebook;
 
 use gradebook;

@@ -52,6 +52,7 @@ public class InstructorController{
 			}else {
 				Assignment ta = new Assignment(adto);
 				ta.setCourse(c);
+				ta.setNeedsGrading(1);
 				assignmentRepository.save(ta);
 			}
 			
