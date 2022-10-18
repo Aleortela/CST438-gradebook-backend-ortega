@@ -94,7 +94,7 @@ public class GradeBookController {
 		System.out.println("Gradebook - calcFinalGrades for course " + course_id);
 		
 		// check that this request is from the course instructor 
-		String email = "dwisneski@csumb.edu";  // user name (should be instructor's email) 
+		String email = "dwisnesk@csumb.edu";  // user name (should be instructor's email) 
 		
 		Course c = courseRepository.findById(course_id).orElse(null);
 		if (!c.getInstructor().equals(email)) {
@@ -119,7 +119,7 @@ public class GradeBookController {
 			cdto.grades.add(gdto);
 			System.out.println("Course="+course_id+" Student="+e.getStudentEmail()+" grade="+gdto.grade);
 		}
-		
+		System.out.println("COURSE_ID: "+course_id);
 		registrationService.sendFinalGrades(course_id, cdto);
 	}
 	
