@@ -52,6 +52,13 @@ public class RegistrationServiceMQ extends RegistrationService {
 		}
 		
 		
+		System.out.println("Received: " + enrollmentDTO);
+		Enrollment e = enrollmentRepository.findById(enrollmentDTO.id).orElse(null);
+		if(e != null) {
+			enrollmentRepository.save(e);
+		}
+		
+		
 	}
 
 	// sender of messages to Registration Service
