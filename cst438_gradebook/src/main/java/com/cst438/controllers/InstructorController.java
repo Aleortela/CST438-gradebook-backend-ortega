@@ -43,7 +43,7 @@ public class InstructorController{
 	@PostMapping("/add")
 	public void createAssignment(@RequestBody AssignmentListDTO.AssignmentDTO adto){
 		
-		Optional<Assignment> a = assignmentRepository.findById(adto.assignmentId);
+		Optional<Assignment> a = assignmentRepository.findById(adto.getAssignmentID());
 		
 		if(a.isEmpty()) {
 			Course c = courseRepository.findById(adto.courseId).orElse(null);
