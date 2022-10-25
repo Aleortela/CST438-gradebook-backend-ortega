@@ -80,7 +80,7 @@ public class EndToEndTestSubmitGrades {
 		a.setCourse(c);
 		// set assignment due date to 24 hours ago
 		a.setDueDate(new java.sql.Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000));
-		a.setName(TEST_ASSIGNMENT_NAME);
+		a.setAssignmentName(TEST_ASSIGNMENT_NAME);
 		a.setNeedsGrading(1);
 
 //	    add a student TEST into course 99999
