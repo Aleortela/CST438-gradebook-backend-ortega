@@ -52,7 +52,7 @@ public class GradeBookController {
 		List<Assignment> assignments = assignmentRepository.findNeedGradingByEmail(email);
 		AssignmentListDTO result = new AssignmentListDTO();
 		for (Assignment a: assignments) {
-			result.assignments.add(new AssignmentListDTO.AssignmentDTO(a.getId(), a.getCourse().getCourse_id(), a.getAssignmentName(), a.getDueDate() , a.getCourse().getTitle()));
+			result.assignments.add(new AssignmentListDTO.AssignmentDTO(a.getId(), a.getCourse().getCourse_id(), a.getAssignmentName(), a.getDueDate() , a.getCourse().getTitle(), 0));
 		}
 		return result;
 	}
