@@ -39,9 +39,9 @@ public class Assignment {
 	
 	public Assignment(AssignmentListDTO.AssignmentDTO adto) {
 		super();
-		this.id = adto.getAssignmentID();
-		this.name = adto.getAssignmentName();
-		this.dueDate = adto.getDueDate();
+		this.id = adto.assignmentId;
+		this.name = adto.assignmentName;
+		this.dueDate = adto.dueDate;
 	}
 	
 	public Assignment() {

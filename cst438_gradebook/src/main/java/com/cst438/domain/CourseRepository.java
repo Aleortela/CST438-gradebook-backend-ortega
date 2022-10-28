@@ -10,4 +10,7 @@ public interface CourseRepository extends CrudRepository <Course, Integer> {
 	
 	@Query("select a from Course a where a.instructor = :email")
 	List<Course> findByEmail(@Param("email") String email);
+	
+	//@Query("select a from Course a where a.course_id = :course_id")
+	//Course findById(@Param("course_id") Course course_id);
 }

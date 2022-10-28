@@ -26,7 +26,7 @@ import com.cst438.domain.AssignmentGrade;
 import com.cst438.domain.AssignmentGradeRepository;
 import com.cst438.domain.AssignmentListDTO;
 import com.cst438.domain.AssignmentRepository;
-import com.cst438.domain.AssignmentDTO;
+import com.cst438.domain.AssignmentListDTO.AssignmentDTO;
 import com.cst438.domain.Course;
 import com.cst438.domain.CourseRepository;
 import com.cst438.domain.Enrollment;
@@ -254,14 +254,11 @@ public class JunitTestGradebook {
 		
 		MockHttpServletResponse response;
 		// set dueDate to 1 week before now.
-		AssignmentListDTO.AssignmentDTO adto = new AssignmentListDTO.AssignmentDTO();
-		adto.setAssignmentID(20);
-		adto.setAssignmentName("JUnit Test Assignment");
-		adto.setDueDate(new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000));
-		adto.setNeedsGrading(1);
-		
+		AssignmentDTO adto = new AssignmentDTO();
+		adto.assignmentId = 20;
+		adto.assignmentName = "JUnit Test Assignment";
+		adto.dueDate = new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000);
 		//System.out.println(asJsonString(adto));
-		
 		response = mvc.perform(MockMvcRequestBuilders.post("/instructor/add").accept(MediaType.APPLICATION_JSON)
 				.content(asJsonString(adto)).contentType(MediaType.APPLICATION_JSON))
 		.andReturn().getResponse();

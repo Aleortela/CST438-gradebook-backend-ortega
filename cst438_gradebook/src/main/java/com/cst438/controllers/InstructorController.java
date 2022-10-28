@@ -80,7 +80,7 @@ public class InstructorController{
 	
 	@Transactional
 	@PutMapping("/update")
-	public void updateAssignment (@RequestBody AssignmentDTO assignment) {
+	public void updateAssignment (@RequestBody AssignmentListDTO.AssignmentDTO assignment) {
 		
 		Optional<Assignment> op = assignmentRepository.findById(assignment.assignmentId);
 		

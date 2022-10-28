@@ -52,7 +52,7 @@ public class GradeBookController {
 		List<Assignment> assignments = assignmentRepository.findNeedGradingByEmail(email);
 		AssignmentListDTO result = new AssignmentListDTO();
 		for (Assignment a: assignments) {
-			result.assignments.add(new AssignmentListDTO.AssignmentDTO(a.getId(), a.getCourse().getCourse_id(), a.getAssignmentName(), a.getDueDate() , a.getCourse().getTitle(), 0));
+			result.assignments.add(new AssignmentListDTO.AssignmentDTO(a.getId(), a.getCourse().getCourse_id(), a.getAssignmentName(), a.getDueDate() , a.getCourse().getTitle()));
 		}
 		return result;
 	}
@@ -119,7 +119,7 @@ public class GradeBookController {
 			cdto.grades.add(gdto);
 			System.out.println("Course="+course_id+" Student="+e.getStudentEmail()+" grade="+gdto.grade);
 		}
-		System.out.println("COURSE_ID: "+course_id);
+		System.out.println("CourseDTO sent to sendFinalGrades" + cdto);
 		registrationService.sendFinalGrades(course_id, cdto);
 	}
 	
