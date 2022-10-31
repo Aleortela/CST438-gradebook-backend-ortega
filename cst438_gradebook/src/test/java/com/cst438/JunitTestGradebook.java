@@ -256,7 +256,7 @@ public class JunitTestGradebook {
 		// set dueDate to 1 week before now.
 		AssignmentDTO adto = new AssignmentDTO();
 		adto.assignmentId = 20;
-		adto.assignmentName = "JUnit Test Assignment";
+		adto.name = "JUnit Test Assignment";
 		adto.dueDate = new java.sql.Date(System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000);
 		//System.out.println(asJsonString(adto));
 		response = mvc.perform(MockMvcRequestBuilders.post("/instructor/add").accept(MediaType.APPLICATION_JSON)

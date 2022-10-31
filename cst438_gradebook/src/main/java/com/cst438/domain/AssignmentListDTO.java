@@ -109,7 +109,7 @@ public class AssignmentListDTO {
 		
 	}
 
-	public ArrayList<AssignmentDTO> assignments = new ArrayList<>();
+	public ArrayList<AssignmentListDTO.AssignmentDTO> assignments = new ArrayList<>();
 
 	@Override
 	public String toString() {

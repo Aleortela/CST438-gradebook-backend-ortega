@@ -40,7 +40,7 @@ public class Assignment {
 	public Assignment(AssignmentListDTO.AssignmentDTO adto) {
 		super();
 		this.id = adto.assignmentId;
-		this.name = adto.assignmentName;
+		this.name = adto.name;
 		this.dueDate = adto.dueDate;
 	}
 	
